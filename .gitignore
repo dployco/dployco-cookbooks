@@ -1,6 +1,5 @@
 *.gem
 *.rbc
-.bundle
 .config
 coverage
 InstalledFiles
@@ -16,3 +15,5 @@ tmp
 .yardoc
 _yardoc
 doc/
+/bin
+/bundle
