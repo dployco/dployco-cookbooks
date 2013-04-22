@@ -1,0 +1,40 @@
+upstream <%= @application_name %> {
+<% if @application_socket.length > 1 -%>
+  server unix:<%= @application_socket %> fail_timeout=<%= @fail_timeout %> max_fails=<%= @max_fails %>;
+<% else -%>
+  <% @application_ip_port.each do |ip_port| -%>
+    server <%= ip_port %> fail_timeout=<%= @fail_timeout %> max_fails=<%= @max_fails %>;
+  <% end -%>
+<% end -%>
+}
+
+<% if @ssl -%>
+  ssl_certificate <%= @ssl_certificate %>;
+  ssl_certificate_key <%= @ssl_certificate_key %>;
+<% end -%>
+
+server {
+  listen <%= @listen_port %>;
+  <% if @ssl %>
+    ssl on;
+    listen 443 ssl;
+  <% end -%>	
+  server_name <%= @server_name %>;
+  <% @static_files.each do |url, path| -%>
+    location <%= url %> {
+    alias <%= path %>;
+    }
+  <% end -%>
+
+  <% @extra_options.each do |option, val| -%>
+    <%= option val %>;
+  <% end -%>
+
+  location / {
+    proxy_pass http://<%= @application_name %>;
+    proxy_redirect     off;
+    proxy_set_header   Host             $host;
+    proxy_set_header   X-Real-IP        $remote_addr;
+    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+  }
+}
