@@ -17,3 +17,4 @@ _yardoc
 doc/
 /bin
 /bundle
+.DS_Store
