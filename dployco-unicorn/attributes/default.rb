@@ -13,5 +13,5 @@ default[:dployco][:unicorn][:options] = {} #{ :tcp_nodelay => true, :backlog => 
 default[:dployco][:unicorn][:owner] = 'root'
 default[:dployco][:unicorn][:group] = 'root'
 default[:dployco][:unicorn][:bundler] = false
-default[:dployco][:unicorn][:bundle_command] = 'bundle'
+default[:dployco][:unicorn][:bundle_command] = '/usr/local/bin/bundle'
 default[:dployco][:unicorn][:uninstall] = false
