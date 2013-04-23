@@ -43,6 +43,7 @@ end
 
 directory "/etc/unicorn/" do
   action :delete
+  recursive true
   only_if { node[:dployco][:unicorn][:uninstall] }
 end
 
@@ -58,7 +59,8 @@ end
              :group     => node[:dployco][:unicorn][:group],
              :rails_env => node[:dployco][:unicorn][:environment],
              :bundler   => node[:dployco][:unicorn][:bundler],
-             :socket    => node[:dployco][:unicorn][:port],            
+             :socket    => node[:dployco][:unicorn][:port],
+             :rbfile    => node[:dployco][:unicorn][:rbfile],
              :bundle_command   => node[:dployco][:unicorn][:bundle_command],
              :smells_like_rack => ::File.exists?(::File.join(node[:dployco][:unicorn][:application_deploy_path], "current", "config.ru"))
            )

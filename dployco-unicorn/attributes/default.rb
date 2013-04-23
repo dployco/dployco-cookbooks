@@ -6,8 +6,6 @@ default[:dployco][:unicorn][:preload_app] = false
 default[:dployco][:unicorn][:worker_processes] = [node[:cpu][:total].to_i * 4, 8].min
 default[:dployco][:unicorn][:preload_app] = false
 default[:dployco][:unicorn][:before_fork] = 'sleep 1'
-#default[:dployco][:unicorn][:socket] = nil
-#default[:dployco][:unicorn][:port] = node[:dployco][:unicorn][:socket] ? node[:dployco][:unicorn][:socket] : '8080'
 default[:dployco][:unicorn][:port] = '8888'
 default[:dployco][:unicorn][:options] = {} #{ :tcp_nodelay => true, :backlog => 100 }
 default[:dployco][:unicorn][:owner] = 'root'
@@ -15,3 +13,4 @@ default[:dployco][:unicorn][:group] = 'root'
 default[:dployco][:unicorn][:bundler] = false
 default[:dployco][:unicorn][:bundle_command] = '/usr/local/bin/bundle'
 default[:dployco][:unicorn][:uninstall] = false
+default[:dployco][:unicorn][:rbfile] = nil #relative to (project_root)/config
