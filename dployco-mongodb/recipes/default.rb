@@ -1,6 +1,2 @@
-include_recipe "mongodb::10gen_repo"
-include_recipe "mongodb::default"
-
-mongodb_instance "mongodb" do
-  port node['dployco']['mongodb']['port']
-end
+include_recipe "#{cookbook_name}::repository"
+include_recipe "#{cookbook_name}::package"
