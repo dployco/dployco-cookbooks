@@ -60,7 +60,7 @@ end
 
 deploy a['name'] do
 
-  action a['action']
+  action a['action'].to_sym
 
   case a['scm_provider']
   when 'git'
