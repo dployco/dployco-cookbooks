@@ -1,4 +1,4 @@
-default[:dployco][:deploy][:name] = "one word" # must be one word
+default[:dployco][:deploy][:name] = "app" # must be one word
 default[:dployco][:deploy][:path] = "/var/www/projects/#{node[:dployco][:deploy][:name]}"
 default[:dployco][:deploy][:environment] = "production"
 default[:dployco][:deploy][:owner] = "deploy"
