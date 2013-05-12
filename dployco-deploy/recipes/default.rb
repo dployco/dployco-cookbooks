@@ -42,7 +42,7 @@ when 'git'
     content a['deploy_key']
     owner a['user']
     group a['group']
-    mode  '0600'
+    mode  '0755'
     only_if { a['deploy_key'] && a['deploy_key'].size > 0 }
   end
 
