@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of dployco-deploy.
 
+## 0.1.4:
+
+* Depend on build-essentials cookbook
+
 ## 0.1.3:
 
 * Actually use the git-ssh-wrapper script

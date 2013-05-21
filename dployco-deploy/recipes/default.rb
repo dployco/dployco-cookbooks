@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "dployco-build-essential"
+
 a = node['dployco']['deploy']
 path = a['deploy_to'].gsub('{name}', a['name'])
 
