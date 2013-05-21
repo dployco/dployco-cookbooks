@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of dployco-ruby.
 
+## 0.1.1:
+
+* Use brightbox ruby ppa repository
+
 ## 0.1.0:
 
 * Initial release of dployco-ruby
