@@ -68,7 +68,7 @@ when 'git'
     content ssh_wrapper
     owner a['user']
     group a['group']
-    mode  '0600'
+    mode  '0750'
   end
 end
 
@@ -82,7 +82,7 @@ deploy a['name'] do
     enable_submodules a['enable_submodules']
     remote a['remote']
     shallow_clone a['shallow_clone']
-    git_ssh_wrapper a['git_ssh_wrapper']
+    git_ssh_wrapper ::File.join(path, 'git-ssh-wrapper')
   when 'svn'
     scm_provider Chef::Provider::Subversion
     svn_arguments a['svn_arguments']

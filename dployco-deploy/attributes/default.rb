@@ -13,7 +13,6 @@ if node['dployco']['deploy']['scm_provider'] == 'git'
   default['dployco']['deploy']['enable_submodules'] = false
   default['dployco']['deploy']['remote'] = 'origin'
   default['dployco']['deploy']['shallow_clone'] = true
-  default['dployco']['deploy']['git_ssh_wrapper'] = nil
   default['dployco']['deploy']['deploy_key'] = nil
 end
 if node['dployco']['deploy']['scm_provider'] == 'svn'
