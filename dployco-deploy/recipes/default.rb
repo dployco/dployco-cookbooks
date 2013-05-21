@@ -22,6 +22,12 @@ group a['group'] do
   # TODO: allow customization for all group params
 end
 
+directory File.join('/', 'home', a['user']) do
+  owner a['user']
+  group a['group']
+  mode  '0750'
+end
+
 directory path do
   owner a['user']
   group a['group']
