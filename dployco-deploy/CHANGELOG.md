@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of dployco-deploy.
 
+## 0.1.2:
+
+* Use deploy_key_file when available
+
 ## 0.1.1:
 
 * Create user home folder

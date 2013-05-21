@@ -42,18 +42,26 @@ when 'git'
   package 'git'
 
   ssh_key_path = ::File.join(path, 'id_deploy')
-  ssh_wrapper = "#!/bin/sh\n/usr/bin/env ssh -o 'StrictHostKeyChecking=no' $1 $2"
+  ssh_wrapper = "#!/bin/sh\n/usr/bin/env ssh -o 'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no' $1 $2"
 
   file ssh_key_path do
     content a['deploy_key']
     owner a['user']
     group a['group']
-    mode  '0755'
+    mode  '0600'
     only_if { a['deploy_key'] && a['deploy_key'].size > 0 }
   end
 
-  if a['deploy_key'] && a['deploy_key'].size > 0
-    ssh_wrapper = "#!/bin/sh\n/usr/bin/env ssh -o 'StrictHostKeyChecking=no' -i '#{ssh_key_path}' $1 $2"
+  file ssh_key_path do
+    content File.read(a['deploy_key_file'])
+    owner a['user']
+    group a['group']
+    mode  '0600'
+    only_if { File.exists? a['deploy_key_file'] }
+  end
+
+  if (a['deploy_key'] && a['deploy_key'].size > 0) || File.exists?(a['deploy_key_file'])
+    ssh_wrapper = "#!/bin/sh\n/usr/bin/env ssh -o 'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no' -i '#{ssh_key_path}' $1 $2"
   end
 
   file ::File.join(path, 'git-ssh-wrapper') do
