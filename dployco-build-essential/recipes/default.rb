@@ -6,4 +6,4 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-package "build-essential"
+package "build-essential libxml2-dev libxslt1-dev"
