@@ -107,6 +107,10 @@ deploy a['name'] do
   symlink_before_migrate a['symlink_before_migrate']
 
   before_migrate do
+    execute "install stuff" do
+      cwd release_path
+      command a["bundle_install_command"]
+    end
   end
 
   migration_command a['migration_command']
